@@ -1,7 +1,7 @@
 //We're in a job interview. Answer the following questions (try to not look at your notes unless you have to).
   // 1) What is the purpose of the 'this keyword'?
 
-      //Answer
+      //Answer  it assigns context to your value, or binds it
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
@@ -23,16 +23,32 @@
   //email --> which is a string
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
+var user = {
+  username: " ",
+  email: " ",
+  getUsername: function(){
+    return this.username;
+  }
+};
+
     //Code Here
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
-
+user.getUsername();
 
 //Next Problem
 
 
 // Write a constructor function, including method definitions, which will make the following function invocations function properly.
-
+var Car = function(make, model, year) {
+  this.make = make,
+  this.model = model,
+  this.year = year,
+  this.move = 0,
+  this.moveCar = function(){
+    return this.move += 10;
+  }
+};
   //Function Invocations Here
 
 var prius = new Car('Toyota', 'Prius', 2011);
@@ -55,7 +71,8 @@ var getYear = function(){
 
 //Note(no tests)
   //Code Here
-
+var pruisYear = getYear.call(prius);
+var mustangYear = getYear.call(mustang);
 
 //New Problem
 
@@ -69,7 +86,7 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser); //Fix this
 
 //Above you're given an object, and  a function. What will the getMyUsername function return?
 //Note(no tests)
@@ -81,4 +98,3 @@ var userName = getMyUsername(); //Fix this
 
 
 //Fix the getMyUsername invocation (stored in the userName variable, at the bottom of the above code) so that userName will be equal to 'iliketurtles'.
-
